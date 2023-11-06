@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Footage Search</title>
+    <style>
+        /* Add CSS to style the input field */
+        #searchInput {
+            width: 300px; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="searchInput" placeholder="Enter search term">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', performSearch);
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            if (event.key === "Enter") {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value;
+
+            if (searchTerm) {
+                const websites = [
+                    `https://www.storyblocks.com/all-video/search/${searchTerm}?max_duration=10000&sort=most_relevant&video_quality=HD?search-origin=search_bar`,
+                    `https://elements.envato.com/stock-video/${searchTerm}`,
+                    `https://artlist.io/stock-footage/search?terms=${searchTerm}`
+                ];
+
+                websites.forEach(function(websiteURL) {
+                    window.open(websiteURL, '_blank');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
