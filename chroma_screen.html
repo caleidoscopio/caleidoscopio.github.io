@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Screen Color Switch</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #greenScreen, #blueScreen {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+        #greenScreen {
+            background-color: #00ff00;
+        }
+        #blueScreen {
+            background-color: #0000ff;
+        }
+    </style>
+</head>
+<body>
+    <button id="enterGreenScreenBtn">Enter Green Screen Full Screen</button>
+    <button id="enterBlueScreenBtn">Enter Blue Screen Full Screen</button>
+    <div id="greenScreen"></div>
+    <div id="blueScreen"></div>
+
+    <script>
+        function enterFullScreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        document.getElementById('enterGreenScreenBtn').addEventListener('click', function() {
+            var greenScreen = document.getElementById('greenScreen');
+            greenScreen.style.display = 'block';
+            document.getElementById('blueScreen').style.display = 'none';
+            enterFullScreen(greenScreen);
+        });
+
+        document.getElementById('enterBlueScreenBtn').addEventListener('click', function() {
+            var blueScreen = document.getElementById('blueScreen');
+            blueScreen.style.display = 'block';
+            document.getElementById('greenScreen').style.display = 'none';
+            enterFullScreen(blueScreen);
+        });
+    </script>
+</body>
+</html>
